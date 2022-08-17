@@ -29,32 +29,39 @@ function getCurrentWeather(userSearch) {
 
 
 function displayCurrentWeather (search) {
+    // get current city 
     var cityName = search.name;
     console.log(cityName);
-
+    
+    // get current country
     var country = search.sys.country;
     console.log(country);
 
+    // get current temp
     var currentTemp = search.main.temp;
     console.log(currentTemp);
 
     // description of weather type
     var weatherDescription = search.weather[0].description.toUpperCase();
     console.log(weatherDescription);
+    
     // description of weather
     var weatherMainDescription = search.weather[0].main.toUpperCase();
     console.log(weatherMainDescription);
 
+    // get wind speed 
     var currentWindSpeed = search.wind.speed;
     console.log(currentWindSpeed);
-
+    
+    // get humidity
     var humidity = search.main.humidity;
     console.log(humidity);
 
-
+    // get current latitude
     var lat = search.coord.lat;
     console.log(lat);
 
+    // get current longitude
     var lon= search.coord.lon;
     console.log(lon);
     /*TODO: Add UV Index*/
@@ -129,6 +136,8 @@ function fivedayForecast (userSearch) {
 
 fivedayForecast();
 
+
+// display the 5 day forecast cards
 function displayForecast (search) {
     
     // latitude (city.coord.lat)
@@ -191,12 +200,27 @@ function displayForecast (search) {
             // append weather description
             $(cardBody).append(weatherDescription);
 
+        // get tempature for cards
+        var breakTag = $("<br>");
+        var currentTemp = $('<h6>').attr('class', 'pt-3 d-inline-block pl-2').text('Temp: ' + forecastObj.temp + " \u00B0F");
+        var tempIcon = $('<i>').attr('class', 'fa-solid fa-temperature-quarter d-inline-block');
+            // append temp
+            $(cardBody).append(tempIcon, currentTemp, breakTag);
+           
+        // get wind for cards  
+        var currentWind = $('<h6>').attr('class', 'pt-3 d-inline-block pl-2').text('Wind: ' + forecastObj.wind + " MPH");
+        var windIcon = $('<i>').attr('class', 'fa-solid fa-wind d-inline-block');
+            // append wind
+            $(cardBody).append(windIcon, currentWind);
 
+        // // get humidity for cards  
+        // var currentHumidity = $('<h6>').attr('class', 'pt-3 d-inline-block pl-2').text('Humidity: ' + forecastObj.humidity + " %");
+        // var humidityIcon = $('<i>').attr('class', 'fa-solid fa-droplet d-inline-block');
+        //     // append hubmidity
+        //     $(cardBody).append(breakTag, humidityIcon, currentHumidity);
+           
 
-
-
-
-        // div for row class and 
+        
            
 
     };
