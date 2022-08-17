@@ -137,35 +137,35 @@ function displayForecast (search) {
     var lon= search.city.coord.lon;
     console.log(lon);
 
-    // store 5 day forecast in array 
-    var arr = [];
+    
    
     // adding h2 for 5-Day forecast Title
-    var fiveDay = $('<h2>').attr('class', 'forecastStyle').text('5-Day Forecast:');
-    $('#forecast').append(fiveDay);
+    // var fiveDay = $('<h2>').attr('class', 'forecastStyle').text('5-Day Forecast: ');
+    // $('#forecast').append(fiveDay);
     
 
     // loop to create a card 
-    for (var i = 0; i < search.list.length; i+=6) {
+    for (var i = 0; i < search.list.length; i+=8) {
        console.log(i);
         var forecastObj ={
             date: search.list[i].dt_txt,
             temp: search.list[i].main.temp,
             wind: search.list[i].wind.speed,
             humidity: search.list[i].main.humidity,
-            icon: search.list[i].weather[0].icon
+            icon: search.list[i].weather[0].icon,
+            description: search.list[i].weather[0].description
         };
+        console.log(forecastObj.icon);
+        console.log(forecastObj.description);
 
        
         // div for column spacing 
-        var forecastRow = $('<div>').attr('class', 'col-md-3');
+        var forecastRow = $('<div>').attr('class', 'col-md-2');
             // append to 5 day forecast div 
             $('#castCard').append(forecastRow);
         
         // div for card creation
         var forecastCard = $('<div>').attr('class', 'card');
-            // style the card for max-width of 15rem or 240px total 
-            // forecastCard.attr('style', 'max-width: 20rem');
             // append to 5 day forecast row
             $(forecastRow).append(forecastCard);
         
@@ -176,9 +176,21 @@ function displayForecast (search) {
 
         // adding cardbody elements START
         // card body date
-        var cardDate = $('<h4>').attr('class', 'card-title').text(moment(forecastObj.date).format('MM' + '/'+ 'DD' + '/' + 'YYYY'));
+        var cardDate = $('<h4>').attr('class', 'card-title card-header d-flex justify-content-center align-items-center').text(moment(forecastObj.date).format('MM' + '/'+ 'DD' + '/' + 'YYYY'));
             // append to card 
             $(cardBody).append(cardDate);
+
+        // get current weather status icon for each card
+        var weatherIcon = $('<img>').attr('src', "http://openweathermap.org/img/wn/" + forecastObj.icon + "@2x.png");
+            weatherIcon.attr('class', 'px-5 align-items-center');
+            // append icon
+            $(cardBody).append(weatherIcon);
+        var weatherDescription = $('<h4>').text(forecastObj.description);
+            weatherDescription.attr('class', 'd-flex justify-content-center align-items-center bg-color');
+            // append weather description
+            $(cardBody).append(weatherDescription);
+
+
 
 
 
