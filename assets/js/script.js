@@ -108,13 +108,7 @@ function fivedayForecast (userSearch) {
     // API call for 5 day forcast outline (api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key})
 
     
-    // latitude (city.coord.lat)
-    // var lat = search.coord.lat;
-    // console.log(lat);
-    // longitude (city.coord.lon)
-    // var lon= search.coord.lon;
-    // console.log(lon);
-
+    
     var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + "charlotte" + apiKey;
     console.log(forecastUrl);
     
@@ -125,7 +119,7 @@ function fivedayForecast (userSearch) {
             response.json().then(function(data){
                 console.log(data);
                 // displayCurrentWeather(data);
-                // displayCurrentWeather(data);
+                displayForecast(data);
             });
         };
         
@@ -135,8 +129,15 @@ function fivedayForecast (userSearch) {
 fivedayForecast();
 
 function displayForecast (search) {
-
+    
+    // latitude (city.coord.lat)
+    var lat = search.city.coord.lat;
+    console.log(lat);
+    // longitude (city.coord.lon)
+    var lon= search.city.coord.lon;
+    console.log(lon);
 }
+
 
 
 
