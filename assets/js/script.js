@@ -136,7 +136,29 @@ function displayForecast (search) {
     // longitude (city.coord.lon)
     var lon= search.city.coord.lon;
     console.log(lon);
-}
+
+    // store 5 day forecast in array 
+    var arr = [];
+   
+    // adding h2 for 5-Day forecast Title
+
+    var fiveDay = $('<h2>').attr('class', 'forecastStyle').text('5-Day Forecast:');
+    $('#forecast').append(fiveDay);
+
+    // loop to create a card 
+    for (var i = 0; i < search.list.length; i++) {
+        var forecastObj ={
+            date: search.list[i].dt_txt,
+            temp: search.list[i].main.temp,
+            wind: search.list[i].wind.speed,
+            humidity: search.list[i].main.humidity,
+            icon: search.list[i].weather[0].icon
+        };
+
+        $
+
+    };
+};
 
 
 
