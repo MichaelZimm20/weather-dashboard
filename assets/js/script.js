@@ -103,10 +103,40 @@ function displayCurrentWeather (search) {
 
 
 
+/*5 day forecast function*/
+function fivedayForecast (userSearch) {
+    // API call for 5 day forcast outline (api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key})
 
+    
+    // latitude (city.coord.lat)
+    // var lat = search.coord.lat;
+    // console.log(lat);
+    // longitude (city.coord.lon)
+    // var lon= search.coord.lon;
+    // console.log(lon);
 
+    var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + "charlotte" + apiKey;
+    console.log(forecastUrl);
+    
+    fetch(forecastUrl)
+    .then(function(response) {
+        //request was successful
+        if (response.ok) {
+            response.json().then(function(data){
+                console.log(data);
+                // displayCurrentWeather(data);
+                // displayCurrentWeather(data);
+            });
+        };
+        
+    }); 
+};
 
+fivedayForecast();
 
+function displayForecast (search) {
+
+}
 
 
 
