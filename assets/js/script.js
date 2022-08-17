@@ -8,7 +8,7 @@ var apiKey_Uv = "f26d01795b1fd24a71924c250027f50c"
 // get current weather
 function getCurrentWeather(userSearch) {
     
-    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + "Charlotte" + apiKey;
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + userSearch + apiKey;
     console.log(apiUrl);
     fetch(apiUrl)
     .then(function(response) {
@@ -26,7 +26,8 @@ function getCurrentWeather(userSearch) {
     
 }
 
-getCurrentWeather();
+
+
 function displayCurrentWeather (search) {
     var cityName = search.name;
     console.log(cityName);
@@ -57,19 +58,34 @@ function displayCurrentWeather (search) {
     var lon= search.coord.lon;
     console.log(lon);
     /*TODO: Add UV Index*/
-    var uvIndexUrl = "https://api.openweathermap.org/data/3.0/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,daily&appid=" + apiKey_Uv;
-    console.log(uvIndexUrl);
+    // var uvIndexUrl = "https://api.openweathermap.org/data/3.0/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,daily&appid=" + apiKey_Uv;
+    // console.log(uvIndexUrl);
 
-    fetch(uvIndexUrl)
-        .then(function(response) {
-            //request was successful
-            if (response.ok) {
-                response.json().then(function(data){
-                    console.log(data);
-                });
-            };
-        });
-        
+    // fetch(uvIndexUrl)
+    //     .then(function(response) {
+    //         //request was successful
+    //         if (response.ok) {
+    //             response.json().then(function(data){
+    //                 console.log(data);
+    //             });
+    //         };
+    //     });
+     
+    
+    // get icon data
+    var iconSrc = search.weather[0].icon;   
+    console.log(iconSrc);
+    // set icon in a img tag and give its attributes
+    $('#empty').empty();
+    var weatherIcon = $('<img>').attr('src', "http://openweathermap.org/img/wn/" + iconSrc + "@2x.png");
+    console.log(weatherIcon);
+    weatherIcon.attr("class", "mx-auto d-block img-size");
+    weatherIcon.attr("id", "icon");
+    //append Icon 
+    $('#weatherIcon').append(weatherIcon);
+    
+    //send text to current Conditions card
+    $('#currentConditions').text("Current Conditions: " + weatherDescription);
     var todaysDate = moment().format('MM' + '/'+ 'DD' + '/' + 'YYYY');
     console.log(todaysDate);
     $('#user-search-result').text(cityName + " (" + todaysDate + ")");
@@ -84,9 +100,53 @@ function displayCurrentWeather (search) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Search button click
 $(".btn").on('click',function(event){
     event.preventDefault();
-    var userPickedCity = event.target.getAttribute("data-language");
+    
+    if($('#search-input').val() === ""){
+        alert("Please enter in a valid City Name!");
+    } else {
+        var userSearch = $('#search-input').val().trim().toLowerCase();
+            getCurrentWeather(userSearch);
+            $(".show").removeClass("show");
+            $('#search-input').val("");
+            // $('#icon').removeclass("d-block");
+    }
 
 });
+

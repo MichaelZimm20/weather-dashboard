@@ -71,4 +71,21 @@
     justify-content: space-between;
   }
  
- 
+ .bg-color{
+    display: none;
+   background-color: #f6d365;
+    
+    }
+
+.img-size {
+    border-radius: 8px;
+    padding: 5px;
+    margin-top:10px;
+    width: 165px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
+}
+
+
+.show {
+    display:none;
+}

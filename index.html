@@ -31,14 +31,14 @@
     <!--END OF header-->
 
     <!--START OF main section-->
-    <main class="flex-row justify-space-between">
+    <main class="flex-row contianer-fluid justify-space-between">
 
         <!--Search for a City-->
         <div class="col-12 col-md-4">
             <div class="card">
                 <h3 class="card-header text-uppercase">Search for a City<i class="fa-thin fa-city"></i></h3>
                 <form id="user-form" class="card-body">
-                    <input name="username" id="username" type="text" autofocus="true"
+                    <input name="search-input" id="search-input" type="text" autofocus="true"
                         class="form-input form-control form-control-lg" placeholder="Enter a city!" />
                     <button type="submit" class="btn mt-3">Search</button>
                 </form>
@@ -63,9 +63,11 @@
                 </form>
               </div> -->
     
-            <!--Current Weather Card-->
-            <div class="col-12 col-lg-8" id="allCurrentWeather">
+            <!--Weather Card (Current and 5 Day Forecast)-->
+            <div class="col-12 col-lg-8 show" id="allCurrentWeather">
                 <div class="row" id="currentWeather">
+                    
+                    <!--Current Weather from user User Search-->
                     <div class="card" style="width: 100%" id="currentCard">
                         <div class="row">
                             <div class="card-body col-md-7" id="weatherCard">
@@ -75,16 +77,27 @@
                                 <p class="my-3" id="humidity"></p>
                                 <p class="my-3" id="UV-index"></p>
                             </div>
-                            <div class="card-body col-md-5" id="weatherIcon">
-            
+                            
+                            <!--Weather icon will go here and correspond with the current weather description-->
+                            <div class="card-body col-md-5 " id="weatherIcon">
+                                <h3 class="d-flex justify-content-center card-title bg-color" id="currentConditions"></h3>
                             </div>
                         </div>
-            
                     </div>
+
+
+                    <!--5 Dat Forecast-->
+
+
+
+
+
+
+
                 </div>
             </div>
            
-
+        
 
 
 
