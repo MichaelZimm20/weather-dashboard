@@ -39,6 +39,14 @@
         background-position: 0% 50%;
     }
 }
+
+/* remove underline from link refresh, in jumbotron*/
+.refresh:hover {
+    text-decoration: none;
+}
+
+
+/*search button style START*/
 .btn:hover {
     background-position: right center;
     /* box-shadow: 2px 2px var(--btn-shadow); */
@@ -62,7 +70,9 @@
     /* transform: translate(-1px, -1px);*/
   }
 
- 
+ /*search button style END*/
+
+
   /*Flex Contents*/
   .flex-row {
     display: flex;

@@ -25,7 +25,7 @@
         <!--JUMBOTRON-->
         <div class="jumbotron jumbotron-fluid background">
             <div class="container d-flex justify-content-center align-content-baseline" style="height: 50px">
-                <h1 class="display-1 text-white font-weight-bold">Weather Dashboard</h1>
+                <a href='/index.html' class="refresh"> <h1 class="display-1 text-white font-weight-bold">Weather Dashboard</h1></a>
             </div>
         </div>
     </header>
@@ -73,10 +73,10 @@
                         <div class="row">
                             <div class="card-body col-md-7" id="weatherCard">
                                 <h2 class="card-title" id="user-search-result"></h2>
-                                <p class="my-3" id="temp"></p>
-                                <p class="my-3" id="wind"></p>
-                                <p class="my-3" id="humidity"></p>
-                                <p class="my-3" id="UV-index"></p>
+                                <i class="fa-solid fa-temperature-quarter d-inline-block"></i><p class="my-3 pl-2 d-inline" id="temp"></p><br>
+                                <i class="fa-solid fa-wind d-inline-block"></i><p class="my-3 d-inline-block pl-2 " id="wind"></p><br>
+                                <i class="fa-solid fa-droplet d-inline-block" style="width: 10px"></i><p class="my-3 d-inline pl-2" id="humidity"></p><br>
+                                <i class="fa-solid fa-sun d-inline-block"></i><p class="my-3 d-inline-block pl-2" id="UV-index"></p>
                             </div>
                             
                             <!--Weather icon will go here and correspond with the current weather description-->

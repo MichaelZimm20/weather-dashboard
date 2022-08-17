@@ -91,6 +91,7 @@ function displayCurrentWeather (search) {
     $('#user-search-result').text(cityName + " (" + todaysDate + ")");
     $('#temp').text("Temp: " + currentTemp + " \u00B0F");
     $('#wind').text("Wind: " + currentWindSpeed + " MPH");
+      // $('#humidity').text(humidityIcon);
     $('#humidity').text("Humidity: " + humidity + " %");
     /*Find uv index API and link it*/
     $('#UV-index').text("UV Index: " );
