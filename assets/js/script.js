@@ -141,12 +141,13 @@ function displayForecast (search) {
     var arr = [];
    
     // adding h2 for 5-Day forecast Title
-
     var fiveDay = $('<h2>').attr('class', 'forecastStyle').text('5-Day Forecast:');
     $('#forecast').append(fiveDay);
+    
 
     // loop to create a card 
-    for (var i = 0; i < search.list.length; i++) {
+    for (var i = 0; i < search.list.length; i+=6) {
+       console.log(i);
         var forecastObj ={
             date: search.list[i].dt_txt,
             temp: search.list[i].main.temp,
@@ -155,7 +156,35 @@ function displayForecast (search) {
             icon: search.list[i].weather[0].icon
         };
 
-        $
+       
+        // div for column spacing 
+        var forecastRow = $('<div>').attr('class', 'col-md-3');
+            // append to 5 day forecast div 
+            $('#castCard').append(forecastRow);
+        
+        // div for card creation
+        var forecastCard = $('<div>').attr('class', 'card');
+            // style the card for max-width of 15rem or 240px total 
+            // forecastCard.attr('style', 'max-width: 20rem');
+            // append to 5 day forecast row
+            $(forecastRow).append(forecastCard);
+        
+        // card body div
+        var cardBody  = $('<div>').attr('class', 'card-body');
+            // append to card 
+            $(forecastCard).append(cardBody);
+
+        // adding cardbody elements START
+        // card body date
+        var cardDate = $('<h4>').attr('class', 'card-title').text(moment(forecastObj.date).format('MM' + '/'+ 'DD' + '/' + 'YYYY'));
+            // append to card 
+            $(cardBody).append(cardDate);
+
+
+
+
+        // div for row class and 
+           
 
     };
 };
