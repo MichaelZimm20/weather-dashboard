@@ -48,8 +48,15 @@ function getCurrentWeather(userSearch) {
                
                 
                 recentSearches(citiesSaved);
-                
                 displayCurrentWeather(data);
+                return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&appid=8a42d43f7d7dc180da5b1e51890e67dc`)
+            })
+            .then (function (response) {
+                return response.json();
+            })
+            .then (function (data){
+                console.log(data);
+                getuvIndex(data);
             })
         }; 
     });
@@ -97,7 +104,7 @@ function displayCurrentWeather (search) {
     var lon= search.coord.lon;
     // console.log(lon);
     
-    
+ 
         // get icon data
     var iconSrc = search.weather[0].icon;   
     // console.log(iconSrc);
@@ -119,8 +126,7 @@ function displayCurrentWeather (search) {
     $('#wind').text("Wind: " + currentWindSpeed + " MPH");
       // $('#humidity').text(humidityIcon);
     $('#humidity').text("Humidity: " + humidity + " %");
-    /*Find uv index API and link it*/
-    $('#UV-index').text("UV Index: " );
+   
     
 
 };
@@ -128,30 +134,27 @@ function displayCurrentWeather (search) {
 // displayCurrentWeather();
 
 
-// function uvIndex (userSearch) {
-//      /*TODO: Add UV Index*/
-    
-//     // console.log(uvIndexUrl);
 
-//     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${coord.lat}&lon=${coord.lon}&units=imperial&appid=f26d01795b1fd24a71924c250027f50c`)
-//         .then(function(response) {
-//             if (response.ok) {
-//                 response.json().then(function(data) {
-//                     console.log(data);
-//                 })
-//             }
-//         });
-//     //     .then(function(response) {
-//     //         //request was successful
-//     //         if (response.ok) {
-//     //             response.json().then(function(data){
-//     //                 console.log(data);
-//     //             });
-//     //         };
-//     //     });
-     
-// }
-// uvIndex();
+//Get UVIndex Color Indicators 
+function getuvIndex(userSearch) {
+    // UV index
+    var uvIndex = userSearch.current.uvi;
+    console.log(uvIndex);
+    $('#UV-index').html(`UV Index:  <span id="uvColor">${uvIndex}</span>`);
+    // UV Index Colors 
+    if (uvIndex < 3) {
+       return  $(uvColor).attr("class", "bg-green");
+    } else if (uvIndex >= 3 && uvIndex <= 6) {
+       return $(uvColor).attr("class", "bg-yellow"); 
+    } else if (uvIndex >= 6 && uvIndex <= 8) {
+       return  $(uvColor).attr("class", "bg-orange"); 
+    } else if (uvIndex >= 8 && uvIndex < 11) {
+      return $(uvColor).attr("class", "bg-red"); 
+    } else return $(uvColor).attr("class", "bg-purple"); 
+
+}
+
+
 
 /*5 day forecast function*/
 function fivedayForecast (userSearch) {
@@ -298,11 +301,11 @@ function recentSearches () {
         $('#recent-search').html("");
     for (var i = 0; i < citiesSaved.length; i++){
         var btn = $("<button>");
-        btn.attr('class', "btn btn-secondary btn-lg btn-block btn-click");
-        console.log(btn);
+        btn.attr('class', "btn btn-click");
+        // console.log(btn);
         btn.attr('data-city', citiesSaved[i].citySearched);
         btn.text(citiesSaved[i].citySearched);
-        console.log(btn);
+        // console.log(btn);
          
         $('#recent-search').append(btn);
         
@@ -334,6 +337,7 @@ $(".btn").on('click', function (event) {
         console.log(userSearch);
         getCurrentWeather(userSearch);
         fivedayForecast(userSearch);
+        // getuvIndex();
         $(".show").removeClass("show");
         $('#search-input').val("");
         //removes the previous search city weather icon and replaces with current searched city

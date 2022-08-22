@@ -70,6 +70,34 @@
     /* transform: translate(-1px, -1px);*/
   }
 
+  .btn-click {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bg-green {
+    background-color: #beecc2;
+  }
+
+  .bg-yellow {
+    background-color: #feffb6;
+  }
+
+  .bg-orange {
+    background-color: #ffe4b6;
+  }
+
+  .bg-orange {
+    background-color: #ffe4b6;
+  }
+
+  .bg-red {
+    background-color: #ffb6b6;
+  }
+
+  .bg-purple {
+    background-color: #dfb6ff;
+  }
  /*search button style END*/
 
 
