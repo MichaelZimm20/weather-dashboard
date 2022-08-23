@@ -47,8 +47,8 @@ function getCurrentWeather(userSearch) {
 
                
                 
-                recentSearches(citiesSaved);
                 displayCurrentWeather(data);
+                recentSearches(citiesSaved);
                 return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&appid=8a42d43f7d7dc180da5b1e51890e67dc`)
             })
             .then (function (response) {
@@ -141,7 +141,7 @@ function getuvIndex(userSearch) {
     var uvIndex = userSearch.current.uvi;
     console.log(uvIndex);
     $('#UV-index').html(`UV Index:  <span id="uvColor">${uvIndex}</span>`);
-    // UV Index Colors 
+    // UV Index Colors if statement
     if (uvIndex < 3) {
        return  $(uvColor).attr("class", "bg-green");
     } else if (uvIndex >= 3 && uvIndex <= 6) {
@@ -158,6 +158,7 @@ function getuvIndex(userSearch) {
 
 /*5 day forecast function*/
 function fivedayForecast (userSearch) {
+   // clear card to reload the next new card
     $("#castCard").empty();
     // API call for 5 day forcast outline (api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key})
 
@@ -173,19 +174,7 @@ function fivedayForecast (userSearch) {
                 console.log(data);
             });
         }
-    }) ;
-    //  fetch(forecastUrl)
-    // .then(function(response) {
-    //     //request was successful
-    //     if (response.ok) {
-    //         response.json().then(function(data){
-    //             console.log(data);
-    //             // displayCurrentWeather(data);
-    //             displayForecast(data);
-    //         });
-    //     };
-        
-    // }); 
+    });
 };
 
 
@@ -201,12 +190,7 @@ function displayForecast (search) {
     var lon= search.city.coord.lon;
     // console.log(lon);
 
-    
-   
-    // adding h2 for 5-Day forecast Title
-    // var fiveDay = $('<h2>').attr('class', 'forecastStyle').text('5-Day Forecast: ');
-    // $('#forecast').append(fiveDay);
-    
+       
 
     // loop to create a card 
     for (var i = 0; i < search.list.length; i+=8) {
@@ -250,37 +234,54 @@ function displayForecast (search) {
             // append icon
             $(cardBody).append(weatherIcon);
 
-
+        // get current weather description for each card
         var weatherDescription = $('<h4>').text(forecastObj.description);
-            weatherDescription.attr('class', 'd-flex justify-content-center align-items-center bg-color');
+            weatherDescription.attr('class', 'd-flex justify-content-center align-items-center bg-color mb-3');
             // append weather description
             $(cardBody).append(weatherDescription);
 
+         
+            
+        // add card info of Temp, Wind, Humidity with respective icons
         var cardInfo = $('<div>').attr('class', 'd-flex flex-column d-inline');
             // append to card 
             $(cardBody).append(cardInfo); 
 
             
-
         // get tempature for cards
-        var currentTemp = $('<h6>').attr('class', 'pt-3 d-inline-block pl-2 temp').text('Temp: ' + forecastObj.temp + " \u00B0F");
-        var tempIcon = $('<i>').attr('class', 'fa-solid fa-temperature-quarter d-inline');
+        var tempInfo = $('<div>').attr('class', 'd-flex align-items-center pt-3');
+        var currentTemp = $('<h6>').attr('class', 'd-inline-block pl-2 temp').text('Temp: ' + forecastObj.temp + " \u00B0F");
+        var tempIcon = $('<i>').attr('class', 'fa-solid fa-temperature-quarter d-inline-block ');
+        // var iconTemp = $('<i>').attr('class', 'fa-solid fa-temperature-quarter d-inline-block mx-0');
+        // var actualTemp = $ ('<h6>').attr('class', 'pl-2 temp d-inline-block mx-0');
+        // actualTemp.text('Temp: ' + forecastObj.temp + " \u00B0F")
+        // $(cardInfo).text('<div><i class="fa-solid fa-temperature-quarter d-inline-block mx-0"></i><h6 class="pl-2 temp d-inline-block mx-0 ">Temp: ' + forecastObj.temp + '\u00B0F</h6></div>');
+        $(currentTemp).text('Temp: ' + forecastObj.temp + '\u00B0F');
             // append temp
-            $(cardInfo).append(tempIcon, currentTemp);
+                // $(tempInfo).append(iconTemp);
+                // $(tempInfo).append(actualTemp);
+                // $(cardInfo).append(tempInfo);
+            $(tempInfo).append(tempIcon, currentTemp);
+            $(cardInfo).append(tempInfo);
             
             
            
-        // get wind for cards  
-        var currentWind = $('<h6>').attr('class', 'pt-3 d-inline-block pl-2 wind').text('Wind: ' + forecastObj.wind + " MPH");
+        // get wind for cards 
+        var windInfo = $('<div>').attr('class', 'd-flex align-items-center pt-3'); 
+        var currentWind = $('<h6>').attr('class', 'd-inline-block pl-2 wind temp').text('Wind: ' + forecastObj.wind + " MPH");
         var windIcon = $('<i>').attr('class', 'fa-solid fa-wind d-inline-block');
+        // $(cardInfo).html('<div><i class="fa-solid fa-wind d-inline-block mx-0"></i><h6 class="pl-2 temp d-inline-block mx-0 ">Wind: ' + forecastObj.temp + '\u00B0F</h6></div>');
             // append wind
-            $(cardInfo).append(windIcon, currentWind);
+            $(windInfo).append(windIcon, currentWind);
+            $(cardInfo).append(windInfo);
           
         // get humidity for cards  
-        var currentHumidity = $('<h6>').attr('class', 'pt-3 d-inline-block pl-2').text('Humidity: ' + forecastObj.humidity + "%");
+        var humidInfo = $('<div>').attr('class', 'd-flex align-items-center pt-3'); 
+        var currentHumidity = $('<h6>').attr('class', 'd-inline-block pl-2').text('Humidity: ' + forecastObj.humidity + "%");
         var humidityIcon = $('<i>').attr('class', 'fa-solid fa-droplet d-inline-block');
-            // append hubmidity
-            $(cardInfo).append(humidityIcon, currentHumidity);
+            // append humidity
+            $(humidInfo).append(humidityIcon, currentHumidity);
+            $(cardInfo).append(humidInfo);
       
     };
 };
@@ -292,13 +293,14 @@ function displayForecast (search) {
 
 //most recent searches buttons
 function recentSearches () {
-
+    //Get item from LocalStorage checking if there are items there
     var citiesSaved = JSON.parse(localStorage.getItem("Recent-Cities"));
         if (citiesSaved == null){
             return null
         } 
 
         $('#recent-search').html("");
+        // for loop to loop through localStorage and return each item as a buttom with specific styling
     for (var i = 0; i < citiesSaved.length; i++){
         var btn = $("<button>");
         btn.attr('class', "btn btn-click");
@@ -311,12 +313,20 @@ function recentSearches () {
         
         
     }
+
+    // allows use to click on search history after a current search is performed.
     $(".btn-click").on('click', function (event) {
         event.preventDefault();
         var cityTarget = event.target.dataset.city;
         // $("data-city")
         getCurrentWeather(cityTarget);
         fivedayForecast(cityTarget);
+        //shows the current clicked on recent searched city
+        $(".show").removeClass("show");
+        //removes the previous search city weather icon and replaces with current searched city
+        const weatherIcon = document.getElementById("icon");
+        weatherIcon.parentNode.removeChild(weatherIcon);
+
     });
 
 }
@@ -324,12 +334,12 @@ function recentSearches () {
 
 
 
-
-
 // Search button click
 $(".btn").on('click', function (event) {
+    //prevents page refresh
     event.preventDefault();
 
+    // if statement to check if string value was inputed into the search bar, if not return weather information
     if ($('#search-input').val() === "") {
         alert("Please enter in a valid City Name!");
     } else {
@@ -340,15 +350,15 @@ $(".btn").on('click', function (event) {
         // getuvIndex();
         $(".show").removeClass("show");
         $('#search-input').val("");
-        //removes the previous search city weather icon and replaces with current searched city
     }
     
+    //removes the previous search city weather icon and replaces with current searched city
     const weatherIcon = document.getElementById("icon");
     weatherIcon.parentNode.removeChild(weatherIcon);
-    // saveLocal();
-    // loadLocalCity();
+   
     
 });
 
 
+//calling recent searches function
 recentSearches();
