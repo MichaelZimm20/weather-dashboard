@@ -71,6 +71,9 @@ THEN I am again presented with current and future conditions for that city
 ![Weather Dashboard screenshots](./assets/images/Picture4.png "Initial page View") 
 <br/><br/><br/><br/>
 
+![Weather Dashboard screenshots](./assets/images/Picture5.png "Initial page View") 
+<br/><br/><br/><br/>
+
 
 
 
