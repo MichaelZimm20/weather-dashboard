@@ -49,7 +49,8 @@ function getCurrentWeather(userSearch) {
 
                     displayCurrentWeather(data);
                     recentSearches(citiesSaved);
-                    return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&appid=8a42d43f7d7dc180da5b1e51890e67dc`)
+                    return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&appid=84b79da5e5d7c92085660485702f4ce8`)
+                    // fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&appid=8a42d43f7d7dc180da5b1e51890e67dc`)
                 })
                     .then(function (response) {
                         return response.json();
