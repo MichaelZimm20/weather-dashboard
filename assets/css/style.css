@@ -1,143 +1,148 @@
 :root {
-    --primary: #07548c;
-    --secondary: rgba(68, 0, 88, 0.705);
-    --tertiary: #1499f8;;
-    --linear: linear-gradient(to right, #07548c , rgba(68, 0, 88, 0.705));
-    --linear-grad: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
-    --light-text:  white;
-    --border-radius: .3rem;
-    --btn-shadow: rgba(218, 122, 247, 0.856);
+  --primary: #07548c;
+  --secondary: rgba(68, 0, 88, 0.705);
+  --tertiary: #1499f8;
+  ;
+  --linear: linear-gradient(to right, #07548c, rgba(68, 0, 88, 0.705));
+  --linear-grad: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
+  --light-text: white;
+  --border-radius: .3rem;
+  --btn-shadow: rgba(218, 122, 247, 0.856);
 
 }
 
 * {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+}
 
- main {
-    margin: 20px auto;
-    width: 95%;
-  }
+main {
+  margin: 20px auto;
+  width: 95%;
+}
 
 .background {
-    /* background-image: linear-gradient(to right, #07548c , rgba(68, 0, 88, 0.705)); */
-    
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;;
+  /* background-image: linear-gradient(to right, #07548c , rgba(68, 0, 88, 0.705)); */
+
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  ;
 }
 
 
 @keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* remove underline from link refresh, in jumbotron*/
 .refresh:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 
 /*search button style START*/
 .btn:hover {
-    background-position: right center;
-    /* box-shadow: 2px 2px var(--btn-shadow); */
+  background-position: right center;
+  /* box-shadow: 2px 2px var(--btn-shadow); */
 }
 
 .btn {
-    font-size: 1.3rem;
-    text-decoration:none;
-    padding: 6px 5px;
-    width: 100%;
-    display: block;
-    margin: 5px 0;
-    border-radius: var(--border-radius);
-    color: var(--light-text);
-    border: none;
-    outline: none;
-    background-image: var(--linear-grad);
-    background-size: 200% auto;
-    transition: 0.5s;
-    /* box-shadow: 3px 3px var(--btn-shadow); */ 
-    /* transform: translate(-1px, -1px);*/
-  }
+  font-size: 1.3rem;
+  text-decoration: none;
+  padding: 6px 5px;
+  width: 100%;
+  display: block;
+  margin: 5px 0;
+  border-radius: var(--border-radius);
+  color: var(--light-text);
+  border: none;
+  outline: none;
+  background-image: var(--linear-grad);
+  background-size: 200% auto;
+  transition: 0.5s;
+  /* box-shadow: 3px 3px var(--btn-shadow); */
+  /* transform: translate(-1px, -1px);*/
+}
 
-  .btn-click {
-    justify-content: center;
-    align-items: center;
-  }
+.btn-click {
+  justify-content: center;
+  align-items: center;
+}
 
-  .bg-green {
-    background-color: #beecc2;
-  }
+.bg-green {
+  background-color: #beecc2;
+}
 
-  .bg-yellow {
-    background-color: #feffb6;
-  }
+.bg-yellow {
+  background-color: #feffb6;
+}
 
-  .bg-orange {
-    background-color: #ffe4b6;
-  }
+.bg-orange {
+  background-color: #ffe4b6;
+}
 
-  .bg-orange {
-    background-color: #ffe4b6;
-  }
+.bg-orange {
+  background-color: #ffe4b6;
+}
 
-  .bg-red {
-    background-color: #ffb6b6;
-  }
+.bg-red {
+  background-color: #ffb6b6;
+}
 
-  .bg-purple {
-    background-color: #dfb6ff;
-  }
- /*search button style END*/
+.bg-purple {
+  background-color: #dfb6ff;
+}
+
+/*search button style END*/
 
 
-  /*Flex Contents*/
-  .flex-row {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .justify-space-between{
-    justify-content: space-between;
-  }
- 
- .bg-color{
-    display: none;
-   background-color: #f6d365;
-    
-    }
+/*Flex Contents*/
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.bg-color {
+  display: none;
+  background-color: #f6d365;
+
+}
 
 .img-size {
-    border-radius: 8px;
-    padding: 5px;
-    margin-top:10px;
-    width: 165px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
+  border-radius: 8px;
+  padding: 5px;
+  margin-top: 10px;
+  width: 165px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
 }
 
 /* Style for Current weather*/
 .show {
-    display:none;
+  display: none;
 }
 
 
 /*Style of ForeCast Card elements*/
 .forecastStyle {
-    padding-top: 10px;
-    
+  padding-top: 10px;
+
 }
 
 .temp {
- font-size: 18px;
+  font-size: 18px;
 
 }
-
